@@ -1,6 +1,7 @@
 //types
-import { TYPES } from "./usersList.actionTypes";
 import { IAction, IUsersListState } from "./usersList.types";
+//action types
+import { TYPES } from "./usersList.actionTypes";
 
 const initialState: IUsersListState = {
   list: [],

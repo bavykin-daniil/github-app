@@ -1,5 +1,7 @@
 //general
 import React from "react";
+//actions
+import { setSearch } from "../store/usersList/usersList.actions";
 //components
 import UsersList from "../components/UsersList/UsersList";
 import Search from "../components/Search/Search";
@@ -10,7 +12,7 @@ const MainPage = () => {
   return (
     <div className="page mainPage">
       <h1 className="title">GitHub searcher</h1>
-      <Search />
+      <Search scope="users" searchFunction={setSearch} />
       <UsersList />
     </div>
   );
