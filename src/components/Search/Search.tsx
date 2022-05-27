@@ -12,7 +12,11 @@ import Input from "../../ui/Input/Input";
 //styles
 import styles from "./styles.module.scss";
 
-const Search: React.FC<ISearchComponent> = ({ scope, searchFunction }) => {
+const Search: React.FC<ISearchComponent> = ({
+  scope,
+  searchFunction,
+  placeholder = "",
+}) => {
   const dispatch = useAppDispatch();
 
   //@ts-ignore
@@ -44,7 +48,7 @@ const Search: React.FC<ISearchComponent> = ({ scope, searchFunction }) => {
       <Input
         value={searchValue}
         onChange={handleSearchInputChange}
-        placeholder={"Search for users"}
+        placeholder={placeholder}
       />
     </div>
   );

@@ -5,12 +5,12 @@ import { IUserProp } from "../types";
 //styles
 import styles from "./styles.module.scss";
 
-interface IUserItemProps {
+interface IUserItemComponent {
   user: IUserProp;
   onClick: () => void;
 }
 
-const UserItem: React.FC<IUserItemProps> = ({ user, onClick }) => {
+const UserItem: React.FC<IUserItemComponent> = ({ user, onClick }) => {
   return (
     <li className={styles.item} onClick={onClick}>
       <div className={styles.avatarContainer}>

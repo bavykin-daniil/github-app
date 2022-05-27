@@ -12,7 +12,11 @@ const MainPage = () => {
   return (
     <div className="page mainPage">
       <h1 className="title">GitHub searcher</h1>
-      <Search scope="users" searchFunction={setSearch} />
+      <Search
+        scope="users"
+        searchFunction={setSearch}
+        placeholder={"Search for users"}
+      />
       <UsersList />
     </div>
   );

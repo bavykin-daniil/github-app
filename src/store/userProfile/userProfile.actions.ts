@@ -1,6 +1,6 @@
 //api
 import { getUser } from "../../api/user.api";
-import { getUserProfileHelper } from "../../helpers/userProfileHelper";
+import { getUserProfileHelper } from "../../helpers/userProfileHelper/userProfileHelper";
 //types
 import { AppDispatch } from "../types";
 //action types
