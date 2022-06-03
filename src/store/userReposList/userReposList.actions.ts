@@ -8,6 +8,7 @@ import { getUserReposListHelper } from "../../helpers/userReposListHelper/userRe
 import { AppDispatch } from "../types";
 //action types
 import { TYPES } from "./userReposList.actionTypes";
+import { getUserReposBySearch } from "../../api/userRepos.api";
 
 export const getUserReposByUserName = (userName: string) => {
   return async (dispatch: AppDispatch) => {
@@ -28,32 +29,33 @@ export const getUserReposByUserName = (userName: string) => {
   };
 };
 
-export const setReposSearchByName = (repoName: string) => {
+export const setReposSearch = (repoName: string) => {
   return async (dispatch: AppDispatch) => {
     dispatch({ type: TYPES.SET_REPOS_SEARCH_BY_NAME, payload: repoName });
 
     const userName = store.getState().user.profile.login;
 
-    if (repoName !== "") {
-      getUserRepos(userName)
-        .then((response) => {
-          const payload = getUserReposListHelper(response.data);
-          const searchResult = payload.filter((repo) => repo.name === repoName);
+    dispatch(getReposByName(repoName, userName));
+  };
+};
 
-          dispatch({
-            type: TYPES.GET_USER_REPOS_LIST_SUCCESS,
-            payload: searchResult,
-          });
-        })
-        .catch((error) => {
-          dispatch({
-            type: TYPES.GET_USER_REPOS_LIST_ERROR,
-            payload: error,
-          });
+export const getReposByName = (repoName: string, userName: string) => {
+  return async (dispatch: AppDispatch) => {
+    dispatch({ type: TYPES.GET_USER_REPOS_LIST });
+
+    getUserReposBySearch(repoName, userName)
+      .then((response) => {
+        dispatch({
+          type: TYPES.GET_USER_REPOS_LIST_SUCCESS,
+          payload: response.data.items,
         });
-    } else {
-      dispatch(getUserReposByUserName(userName));
-    }
+      })
+      .catch((error) => {
+        dispatch({
+          type: TYPES.GET_USER_REPOS_LIST_ERROR,
+          payload: error.message,
+        });
+      });
   };
 };
 

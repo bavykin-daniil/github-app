@@ -5,7 +5,7 @@ import useAppDispatch from "../hooks/useAppDispatch";
 //actions
 import {
   resetState,
-  setReposSearchByName,
+  setReposSearch,
 } from "../store/userReposList/userReposList.actions";
 //components
 import UserProfile from "../components/UserProfile/UserProfile";
@@ -29,7 +29,7 @@ const UserPage = () => {
       <UserProfile />
       <Search
         scope="userRepos"
-        searchFunction={setReposSearchByName}
+        searchFunction={setReposSearch}
         placeholder="Search for user repos"
       />
       <ReposList />

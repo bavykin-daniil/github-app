@@ -1,9 +1,9 @@
 //general
 import axios from "axios";
 
-export const getUserReposByName = (repoName: string) => {
+export const getUserReposBySearch = (repoName: string, userName: string) => {
   const response = axios.get(
-    `https://api.github.com/users/user/repos?name=${repoName}`
+    `https://api.github.com/search/repositories?q=${repoName}+user:${userName}`
   );
   return response;
 };
